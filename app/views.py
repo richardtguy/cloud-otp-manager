@@ -4,6 +4,7 @@ Minimal Flask application with user login
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash
+from werkzeug.urls import url_parse
 import os
 import json
 import logging
@@ -31,7 +32,7 @@ def login():
 			return redirect(url_for('login'))
 		login_user(user)
 		next_page = request.args.get('next')
-		if not next_page or urlparse(next_page).netloc != '':
+		if not next_page or url_parse(next_page).netloc != '':
 			next_page = url_for('index')
 		return redirect(next_page)
 	
