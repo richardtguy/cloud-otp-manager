@@ -6,9 +6,9 @@ SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
 	'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-SECRET_KEY = os.environ['FLASK_SECRET_KEY']
+SECRET_KEY = os.environ.get('FLASK_SECRET_KEY')
 
-ADMINS = ['Richard Guy <rich.guy@cantab.net>']
+ADMINS = [os.environ.get('ADMIN')]
 
 MAIL_USERNAME=os.environ.get('MAIL_USERNAME')
 MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD')
