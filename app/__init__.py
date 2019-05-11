@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_mail import Mail
+
 import logging
 import os
 
@@ -21,10 +23,10 @@ login = LoginManager(app)
 login.login_view = 'login'
 login.login_message_category = 'danger'
 
+mail = Mail(app)
+
 # register backend admin commands
 app.cli.add_command(create_user)
 app.cli.add_command(delete_user)
-
-app.secret_key = os.environ['FLASK_SECRET_KEY']
 
 from app import views, models

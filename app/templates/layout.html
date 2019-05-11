@@ -9,17 +9,27 @@
 	
 	<title>Flask demo</title>
 </head>
-{% with messages = get_flashed_messages(with_categories=true) %}
-  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible fade show">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+<div class="container-fluid">
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		<!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+		{% if messages %}
+			{% for category, message in messages %}
+				<div class="alert alert-{{ category }} alert-dismissible fade show">
+				{{ message }}
+				<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+</div>
+<div class="container-fluid">
+	<a href="{{ url_for('index') }}">Home</a> |
+	{% if current_user.is_anonymous %}
+	<a href="{{ url_for('login') }}">Login</a>
+	{% else %}
+	<a href="{{ url_for('logout') }}">Logout</a>
+	{% endif %}
+</div>
 <!-- JavaScript libraries -->
 <!-- jQuery, Popper, & Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
