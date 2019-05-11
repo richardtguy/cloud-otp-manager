@@ -17,13 +17,13 @@ To add new tables to the database:
 
 ## Configuration
 Ensure the following configuration variables are set in `/instance/config.py`:
-| --- | --- |
-| `SQLALCHEMY_DATABASE_URI` | Database URI|
-| `SQLALCHEMY_TRACK_MODIFICATIONS`| False|
-| `ADMINS`| "From" address for admin emails"|
-| `SECRET_KEY`| Secret key|
-| `MAIL_USERNAME`| Username for email server|
-| `MAIL_PASSWORD`| Password for email server|
-| `MAIL_SERVER`| Email server address|
-| `MAIL_PORT`| Email server port|
-| `MAIL_USE_SSL`| True for SSL|
+
+-`SQLALCHEMY_DATABASE_URI`: Database URI
+-`SQLALCHEMY_TRACK_MODIFICATIONS`: False
+-`ADMINS`: "From" address for admin emails"
+-`SECRET_KEY`: Secret key
+-`MAIL_USERNAME`: Username for email server
+-`MAIL_PASSWORD`: Password for email server
+-`MAIL_SERVER`: Email server address
+-`MAIL_PORT`: Email server port
+-`MAIL_USE_SSL`: True for SSL
