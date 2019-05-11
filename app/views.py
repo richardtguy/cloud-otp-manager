@@ -1,5 +1,5 @@
 """
-Minimal Flask application with user accounts and login
+View functions
 """
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
@@ -17,15 +17,10 @@ import config
 logger = logging.getLogger(__name__)
 
 @app.route("/", methods=["GET"])
+@login_required
 def index():
 	return render_template('index.html')
 
-@app.route("/secret", methods=["GET"])
-@login_required
-def secret():
-	return render_template('secret.html')
-
-	
 @app.route("/login", methods=["GET", "POST"])
 def login():
 	if request.method == 'POST':

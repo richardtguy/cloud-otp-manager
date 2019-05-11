@@ -1,8 +1,14 @@
+"""
+Email functions
+"""
 from flask_mail import Message
 from flask import render_template
 from app import app, mail
 
 def send_password_reset_email(user):
+	"""
+	Send password reset email to user
+	"""
 	token = user.get_reset_password_token()
 	send_email(
 		'Reset Your Password',
@@ -15,10 +21,9 @@ def send_password_reset_email(user):
 	)
 
 def send_email(subject, sender, recipients, text_body, html_body):
-	print(
-		app.config['MAIL_USE_TLS'],
-		app.config['MAIL_USE_SSL']
-	)
+	"""
+	Send email
+	"""
 	msg = Message(subject, sender=sender, recipients=recipients)
 	msg.body = text_body
 	msg.html = html_body

@@ -1,5 +1,5 @@
 """
-Command line interface for back-end admin
+Command line functions for back-end admin
 """
 import click
 import logging
@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 @click.option('--username', '-u', prompt=True)
 @click.option('--password', '-p', prompt=True)
 def create_user(username, password):
-	# create new user with specified username and password
+	"""
+	Create new user
+	"""
 	u = app.models.User(username=username)
 	u.set_password(password)
 	try:
@@ -28,7 +30,9 @@ def create_user(username, password):
 @click.command('delete_user')
 @click.option('--username', '-u', prompt=True)
 def delete_user(username):
-	# delete user
+	"""
+	Delete user
+	"""
 	u = app.models.User.query.filter_by(username=username).first()
 	try:
 		app.db.session.delete(u)
