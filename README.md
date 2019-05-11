@@ -17,6 +17,7 @@ To add new tables to the database:
 
 ## Configuration
 Ensure the following configuration variables are set in `/instance/config.py`:
+| --- | ---
 | `SQLALCHEMY_DATABASE_URI` | Database URI|
 | `SQLALCHEMY_TRACK_MODIFICATIONS`| False|
 | `ADMINS`| "From" address for admin emails"|
