@@ -16,7 +16,7 @@ To add new tables to the database:
 - Upgrade the database with `flask db upgrade`
 
 ## Configuration
-Ensure the following configuration variables are set in `/instance/config.py`:
+Ensure the following configuration variables are set (e.g. in `/instance/config.py` for local development):
 
 - `SQLALCHEMY_DATABASE_URI`: Database URI
 - `SQLALCHEMY_TRACK_MODIFICATIONS`: Set to `False`
