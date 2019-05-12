@@ -20,6 +20,10 @@ mail = Mail()
 def create_app():
 	app = Flask(__name__, instance_relative_config=True)
 	app.config.from_pyfile('config.py')
+
+	# log to stdout if deployed to Heroku
+	if app.config['LOG_TO_STDOUT']:
+		logging.getLogger().addHandler(logging.StreamHandler())
 	
 	# initialise extensions
 	db.init_app(app)
