@@ -77,15 +77,17 @@ def index():
 	TableCls = create_table(base=BaseTable).add_column('account',
 		Col('Account'))
 	TableCls.add_column('otp', Col('One-Time Password'))
-	TableCls.add_column('delete', LinkCol('Remove', 'main.remove_account',
+	TableCls.add_column('delete', LinkCol('Remove', 'main.remove_account', attr='remove_symbol',
 		url_kwargs=dict(id='id')))
-	TableCls.add_column('reveal', LinkCol('Show key', 'main.show_key',
+	TableCls.add_column('reveal', LinkCol(u'Show key', 'main.show_key', attr='show_symbol',
 		url_kwargs=dict(id='id')))
 	try:
 		table = TableCls([dict(
 			account=a.name,
 			otp=get_otp(decrypt_key(a.key)),
-			id=a.id
+			id=a.id,
+			remove_symbol='\u274E',
+			show_symbol='\U0001F441'
 		) for a in u.accounts])
 	except TypeError:
 		flash('Session expired - please log in again.', 'warning')

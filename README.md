@@ -1,10 +1,8 @@
 OTP Manager
 ===========
-
 This app generates one-time passwords (OTPs) for accounts registered by the user.  Instead of relying on having physical possession of something such as a mobile phone or hardware key, this app allows a user to generate OTPs from anywhere with internet access.
 
 ## Usage
-
 To register a new account, simply click on `Add account` and enter a name and the secret key provided for the account.  (Spaces in the key do not matter.)
 
 Refresh the page to generate new OTP codes.
@@ -27,3 +25,7 @@ To create a user:
 
 To delete a user:
 `flask delete_user --username user@example.com`
+
+## Planned features
+- Create new accounts using otp QR codes.
+- Automatically refresh OTP codes based on time.
