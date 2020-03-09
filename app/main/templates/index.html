@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<body>
+<body onload = "autoRefresh({{ t }});">
 <div class="card" id="main">
   <div class="card-body text-center">
     <h2 class="card-title">OTP Manager</h2>
@@ -8,5 +8,8 @@
     <a href="{{ url_for('main.add_account') }}">Add account</a>
   </div>
 </div>
+
+<script src="static/timer.js"></script>
+
 <body>
 {% endblock %}

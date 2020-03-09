@@ -92,7 +92,9 @@ def index():
 	except TypeError:
 		flash('Session expired - please log in again.', 'warning')
 		return redirect(url_for('auth.login'))
-	return render_template('index.html', table=table)
+	# calculate time (in ms) before OTPs expire
+	time_to_expiry = (30 - (now - round(now / 30) * 30)) * 1000
+	return render_template('index.html', table=table, t=time_to_expiry)
 
 @bp.route("/add-account", methods=["GET", "POST"])
 @login_required
