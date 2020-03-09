@@ -11,6 +11,9 @@ from app import db, login
 
 logger = logging.getLogger(__name__)
 
+"""
+User database models
+"""
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -41,6 +44,25 @@ class User(UserMixin, db.Model):
 		except:
 			return
 		return User.query.get(id)
-															
+
 	def __repr__(self):
 		return '<User {}>'.format(self.username)
+
+"""
+Database models
+"""
+class Account(db.Model):
+    """
+    Database model for an OTP account
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
+    key = db.Column(db.String(64))
+    # backref sets up a reference from the right side of this relationship
+    # (the User).  Accessing User.accounts returns a (lazy-loaded) list of
+    # accounts associated with the user.
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', backref=db.backref('accounts', lazy=True))
+
+    def __repr__(self):
+        return '<Account {}>'.format(self.name)

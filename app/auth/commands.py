@@ -29,7 +29,7 @@ def create_user(username, password):
 		click.echo("Error! Could not create user")
 	finally:
 		db.session.close()
-	
+
 @click.command('delete_user')
 @click.option('--username', '-u', prompt=True)
 @with_appcontext
