@@ -3,7 +3,7 @@ Main application view functions
 """
 from flask import render_template, session, request, redirect, url_for, flash
 from flask import abort
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user
 from flask_table import Table, Col, LinkCol, create_table
 from base64 import urlsafe_b64encode, b32decode
 from time import time
@@ -33,9 +33,13 @@ class BaseTable(Table):
 
 def get_master_key():
 	"""
-	Retrieve key from session
+	Retrieve key from session, if available, else force fresh login
 	"""
-	return session['master_key']
+	try:
+		return session['master_key']
+	except KeyError:
+		logout_user()
+		return None
 
 def get_otp(key):
 	"""
@@ -77,11 +81,15 @@ def index():
 		url_kwargs=dict(id='id')))
 	TableCls.add_column('reveal', LinkCol('Show key', 'main.show_key',
 		url_kwargs=dict(id='id')))
-	table = TableCls([dict(
-		account=a.name,
-		otp=get_otp(decrypt_key(a.key)),
-		id=a.id
-	) for a in u.accounts])
+	try:
+		table = TableCls([dict(
+			account=a.name,
+			otp=get_otp(decrypt_key(a.key)),
+			id=a.id
+		) for a in u.accounts])
+	except TypeError:
+		flash('Session expired - please log in again.', 'warning')
+		return redirect(url_for('auth.login'))
 	return render_template('index.html', table=table)
 
 @bp.route("/add_account", methods=["GET", "POST"])
