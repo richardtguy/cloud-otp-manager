@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<body>
+<div class="card" id="main">
+  <div class="card-body text-center">
+    <strong>Are you sure? </strong>
+    <p>This may prevent you from signing in to your account!</p>
+    <a href="{{ url_for('main.remove_account', id=id) }}">Confirm</a> | 
+    <a href="{{ url_for('main.index') }}">Cancel</a>
+  </div>
+</div>
+<body>
+{% endblock %}

@@ -77,7 +77,7 @@ def index():
 	TableCls = create_table(base=BaseTable).add_column('account',
 		Col('Account'))
 	TableCls.add_column('otp', Col('One-Time Password'))
-	TableCls.add_column('delete', LinkCol('Remove', 'main.remove_account', attr='remove_symbol',
+	TableCls.add_column('delete', LinkCol('Remove', 'main.confirm_remove_account', attr='remove_symbol',
 		url_kwargs=dict(id='id')))
 	TableCls.add_column('reveal', LinkCol(u'Show key', 'main.show_key', attr='show_symbol',
 		url_kwargs=dict(id='id')))
@@ -94,7 +94,7 @@ def index():
 		return redirect(url_for('auth.login'))
 	return render_template('index.html', table=table)
 
-@bp.route("/add_account", methods=["GET", "POST"])
+@bp.route("/add-account", methods=["GET", "POST"])
 @login_required
 def add_account():
 	if request.method == 'POST':
@@ -120,7 +120,12 @@ def add_account():
 		return redirect(url_for('main.index'))
 	return render_template('add_account.html')
 
-@bp.route("/remove_account/<int:id>", methods=["GET"])
+@bp.route("/confirm-remove-account/<int:id>", methods=["GET"])
+@login_required
+def confirm_remove_account(id):
+	return render_template('confirm_remove_account.html', id=id)
+
+@bp.route("/remove-account/<int:id>", methods=["GET"])
 @login_required
 def remove_account(id):
 	u = User.query.get(current_user.id)
@@ -138,7 +143,7 @@ def remove_account(id):
 		db.session.close()
 	return redirect(url_for('main.index'))
 
-@bp.route("/show_key/<int:id>", methods=["GET"])
+@bp.route("/show-key/<int:id>", methods=["GET"])
 @login_required
 def show_key(id):
 	u = User.query.get(current_user.id)

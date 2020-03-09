@@ -62,7 +62,7 @@ class Account(db.Model):
     # (the User).  Accessing User.accounts returns a (lazy-loaded) list of
     # accounts associated with the user.
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship('User', backref=db.backref('accounts', lazy=True))
+    user = db.relationship('User', backref=db.backref('accounts', lazy=True, order_by='Account.name'))
 
     def __repr__(self):
         return '<Account {}>'.format(self.name)
