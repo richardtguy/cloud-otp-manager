@@ -5,7 +5,7 @@ This app generates one-time passwords (OTPs) for accounts registered by the user
 ## Usage
 To register a new account, simply click on `Add account` and enter a name and the secret key provided for the account.  (Spaces in the key do not matter.)
 
-Refresh the page to generate new OTP codes.
+The page refreshes automatically when OTP codes expire.
 
 ## Security considerations
 Firstly, there's no getting away from the fact that this app rather defeats the purpose of 2-factor authentication, as it is no longer necessary for the user to be in physical possession of an object such as a mobile phone or hardware key.
