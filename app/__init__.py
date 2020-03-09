@@ -15,6 +15,7 @@ migrate = Migrate()
 login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message_category = 'danger'
+login.session_protection='strong'
 mail = Mail()
 
 # application factory

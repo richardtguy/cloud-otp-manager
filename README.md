@@ -18,7 +18,7 @@ Notwithstanding that fundamental issue, there are a number of security features 
 - OTP keys added by the user are stored in the database.  They are encrypted using a master key derived irreversibly from the user's password, so they cannot be accessed either by the app's owner or an attacker in possession of the database.
 - The user's master key is stored in plain text on the session cookie.  This should not be a significant vulnerability as an attacker would need to be properly authenticated in order to obtain the encrypted keys from the database.
 - An attacker should not be able to derive the user's password from the master key, as the key is generated sing an irreversible hashing algorithm.
-- Nonetheless, a determined attacker could in theory intercept the session cookie and use it to impersonate the user and obtain one-time passwords and the corresponding keys for the user's accounts.
+- Nonetheless, a determined attacker could in theory intercept the session cookie.  Session protection is set to `strong` in order to prevent an attacker from copying the cookie and using it from another computer or IP address.
 
 ## Backend admin
 To create a user:
