@@ -93,7 +93,8 @@ def index():
 		flash('Session expired - please log in again.', 'warning')
 		return redirect(url_for('auth.login'))
 	# calculate time (in ms) before OTPs expire
-	time_to_expiry = (30 - (now - round(now / 30) * 30)) * 1000
+	now = time()
+	time_to_expiry = (30 - round(now) % 30) * 1000
 	return render_template('index.html', table=table, t=time_to_expiry)
 
 @bp.route("/add-account", methods=["GET", "POST"])
