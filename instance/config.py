@@ -4,7 +4,7 @@ import os
 SECRET_KEY = os.environ.get('FLASK_SECRET_KEY') or 'itsasecret'
 
 # Arbitrary salt for strong encryption
-SALT = b'\xe9K\x0b\x9dx\r\xe0\xdd:\x91\xfa\x8dP\xbat\x97'
+SALT = os.environ.get('OTP_SALT') or b'\xe9K\x0b\x9dx\r\xe0\xdd:\x91\xfa\x8dP\xbat\x97'
 
 # Email address for admin
 ADMINS = [os.environ.get('ADMIN')]

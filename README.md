@@ -15,7 +15,8 @@ Notwithstanding that fundamental issue, there are a number of security features 
 - Clearly, it is essential to use a strong, unique password with this app.  Passwords are stored in the application database as hashes generated using SHA256, and not stored in the database directly.
 - It is very important to remember this password.  While a user can reset their account by email, their keys would still be encrypted based on their original password, so would be inaccessible.
 - OTP keys added by the user are stored encrypted in the database.  They are encrypted using a master key derived from the user's password, so they cannot be accessed either by the app's owner or an attacker in possession of the database and/or the application source code.
-- The user's master key is stored in plain text on the session cookie.  This should not be a significant vulnerability as an attacker would need to be properly authenticated in order to obtain the encrypted keys from the database.
+- The user may request to view the decrypted OTP keys in the browser in order to manually copy these to another authentication device.
+- The user's master key is stored in plain text on the session cookie.  This should not be a significant vulnerability as the server never gives out the encrypted keys, and an attacker would need to be properly authenticated using their password in order to user the master key to request OTPs the (decrypted) keys.
 - An attacker should not be able to derive the user's password from the master key, as the key is generated using a strong irreversible hashing algorithm.
 - Nonetheless, a determined attacker could in theory intercept the session cookie.  Session protection is set to `strong` in order to prevent an attacker from copying the cookie and using it to impersonate the user from another computer or IP address.
 
