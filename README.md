@@ -28,4 +28,3 @@ To delete a user:
 
 ## Planned features
 - Create new accounts using otp QR codes.
-- Automatically refresh OTP codes based on time.
