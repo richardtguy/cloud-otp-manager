@@ -1,11 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-<body onload = "autoRefresh({{ t }});">
-<div class="card" id="main">
-  <div class="card-body text-center">
-    <h2 class="card-title">OTP Manager</h2>
-    {{ table }}
-    <a href="{{ url_for('main.add_account') }}">Add account</a>
+<body onload = "startTimer({{ t }});">
+<div class="container" id="main">
+  <div class="card">
+      <div class="progress">
+        <div class="progress-bar" id="countdown"></div>
+      </div>
+  </div>
+  <div class="card text-center">
+  {{ table }}
+  <a href="{{ url_for('main.add_account') }}">Add account</a>
   </div>
 </div>
 
